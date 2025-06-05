@@ -1,9 +1,207 @@
-import example.pepita
+import golosinas.*
+import mariano.*
 
-describe "group of tests for pepita" {
+describe "test golosinas" {
+  test "se verifique que el peso inicial, el precio y el gusto sean los indicados en el enunciado; y que es, o no, libre de gluten, de acuerdo también a lo que se indica en el enunciado. Para el chocolatín hacer dos comprobaciones, una con 40 gramos de peso inicial y la otra con 100. Para la pastilla tutti-frutti, hacer dos comprobaciones, una en la que es libre de gluten y la otra en que no." {
+    const chocolatin = new Chocolatin ()
+    const caramelo = new Caramelo ()
+    const bombon = new Bombon()
+    const alfajor = new Alfajor()
+    const chupetin = new Chupetin ()
+    const oblea = new Oblea ()
+    const tutifruti = new Tutifrutti ()
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+    chocolatin.pesoInicial(40)
+    assert.equals(40, chocolatin.peso())
+    assert.equals(20, chocolatin.precio())
+    assert.notThat(chocolatin.libreGluten())
+
+    chocolatin.pesoInicial(100)
+    assert.equals(100, chocolatin.peso())
+    assert.equals(50, chocolatin.precio())
+    assert.notThat(chocolatin.libreGluten())
+
+    assert.equals(5, caramelo.peso())
+    assert.equals(1, caramelo.precio())
+    assert.that(caramelo.libreGluten())
+
+    assert.equals(15, bombon.peso())
+    assert.equals(5, bombon.precio())
+    assert.that(bombon.libreGluten())
+
+    assert.equals(300, alfajor.peso())
+    assert.equals(12, alfajor.precio())
+    assert.notThat(alfajor.libreGluten())
+
+    assert.equals(7, chupetin.peso())
+    assert.equals(2, chupetin.precio())
+    assert.that(chupetin.libreGluten())
+    
+    assert.equals(250, oblea.peso())
+    assert.equals(5, oblea.precio())
+    assert.notThat(oblea.libreGluten())
+
+    assert.equals(5, tutifruti.peso())
+    assert.equals(7, tutifruti.precio())
+    assert.that(tutifruti.libreGluten())
+    tutifruti.libreGlutenCambiarANo()
+    assert.equals(10, tutifruti.precio())
+    assert.notThat(tutifruti.libreGluten())
+
+  }
+
+   test "se le den dos mordiscos a la golosina, y se validen los cambios esperados en peso o sabor después de cada uno. Para chocolatín y pastilla tutti-frutti usar las dos variantes descriptas en el ítem anterior. Para la oblea, que sean tres mordiscos en lugar de dos" {
+    const chocolatin = new Chocolatin ()
+    const caramelo = new Caramelo ()
+    const bombon = new Bombon()
+    const alfajor = new Alfajor()
+    const chupetin = new Chupetin ()
+    const oblea = new Oblea ()
+    const tutifruti = new Tutifrutti ()
+
+    chocolatin.pesoInicial(40)
+    assert.equals(40, chocolatin.peso())
+    assert.equals(20, chocolatin.precio())
+    assert.notThat(chocolatin.libreGluten())
+    chocolatin.mordisco()
+    chocolatin.mordisco()
+    assert.equals(36, chocolatin.peso())
+    assert.equals(20, chocolatin.precio())
+    assert.notThat(chocolatin.libreGluten())
+
+    chocolatin.pesoInicial(100)
+    assert.equals(100, chocolatin.peso())
+    assert.equals(50, chocolatin.precio())
+    assert.notThat(chocolatin.libreGluten())
+    chocolatin.mordisco()
+    chocolatin.mordisco()
+    assert.equals(96, chocolatin.peso())
+    assert.equals(50, chocolatin.precio())
+    assert.notThat(chocolatin.libreGluten())
+
+    assert.equals(5, caramelo.peso())
+    assert.equals(1, caramelo.precio())
+    assert.that(caramelo.libreGluten())
+    caramelo.mordisco()
+    caramelo.mordisco()
+    assert.equals(3, caramelo.peso())
+    assert.equals(1, caramelo.precio())
+    assert.that(caramelo.libreGluten())
+
+    assert.equals(15, bombon.peso())
+    assert.equals(5, bombon.precio())
+    assert.that(bombon.libreGluten())
+    bombon.mordisco()
+    bombon.mordisco()
+    assert.equals(7.8, bombon.peso())
+    assert.equals(5, bombon.precio())
+    assert.that(bombon.libreGluten())
+
+    assert.equals(300, alfajor.peso())
+    assert.equals(12, alfajor.precio())
+    assert.notThat(alfajor.libreGluten())
+    alfajor.mordisco()
+    alfajor.mordisco()
+    assert.equals(192, alfajor.peso())
+    assert.equals(12, alfajor.precio())
+    assert.notThat(alfajor.libreGluten())
+
+    assert.equals(7, chupetin.peso())
+    assert.equals(2, chupetin.precio())
+    assert.that(chupetin.libreGluten())
+    chupetin.mordisco()
+    chupetin.mordisco()
+    assert.equals(5.67, chupetin.peso())
+    assert.equals(2, chupetin.precio())
+    assert.that(chupetin.libreGluten())
+
+    assert.equals(250, oblea.peso())
+    assert.equals(5, oblea.precio())
+    assert.notThat(oblea.libreGluten())
+    oblea.mordisco()
+    oblea.mordisco()
+    oblea.mordisco()
+    assert.equals(46.875, oblea.peso())
+    assert.equals(5, oblea.precio())
+    assert.notThat(oblea.libreGluten())
+
+    assert.equals(5, tutifruti.peso())
+    assert.equals(7, tutifruti.precio())
+    assert.that(tutifruti.libreGluten())
+    tutifruti.libreGlutenCambiarANo()
+    assert.equals(5, tutifruti.peso())
+    assert.equals(10, tutifruti.precio())
+    assert.notThat(tutifruti.libreGluten())
+    tutifruti.mordisco()
+    assert.equals(naranja, tutifruti.sabor())
+    tutifruti.mordisco()
+    assert.equals(frutilla, tutifruti.sabor())
+    assert.equals(5, tutifruti.peso())
+    assert.equals(10, tutifruti.precio())
+    assert.notThat(tutifruti.libreGluten())
+
+  }
+
+   test "Para la golosina bañada, hacer las mismas comprobaciones, para tres casos distintos: bañando una pastilla tutti-frutti|bañando un chocolatín|bañando un chupetín." {
+    const chocolatin = new Chocolatin ()
+    const caramelo = new Caramelo ()
+    const bombon = new Bombon()
+    const alfajor = new Alfajor()
+    const chupetin = new Chupetin ()
+    const oblea = new Oblea ()
+    const tutifruti = new Tutifrutti ()
+    const bañada =  new GolosinaBañada () 
+
+
+    chocolatin.pesoInicial(40)
+    bañada.golosinaBase(chocolatin)
+    assert.equals(44, bañada.peso())
+    assert.equals(22, bañada.precio())
+    assert.notThat(bañada.libreGluten())
+    chocolatin.mordisco()
+    chocolatin.mordisco()
+    assert.equals(40, bañada.peso())
+    assert.equals(22, bañada.precio())
+    assert.notThat(bañada.libreGluten())
+
+    bañada.golosinaBase(chupetin)
+    assert.equals(11, bañada.peso())
+    assert.equals(4, bañada.precio())
+    assert.that(bañada.libreGluten())
+    bañada.mordisco()
+    bañada.mordisco()
+    assert.equals(5.67, bañada.peso())
+    assert.equals(4, bañada.precio())
+    assert.that(bañada.libreGluten())
+ }
+
+}
+
+describe "test mariano" {
+  test "Mariano compre el chocolatin, el caramelo y el bombón, falta el alfajor e y el chupetin según las golosinas deseados #{alfajor, bombon, chocolatin, chupetin}" {
+    const chocolatin = new Chocolatin ()
+    const caramelo = new Caramelo ()
+    const bombon = new Bombon()
+    const alfajor = new Alfajor()
+    const chupetin = new Chupetin ()
+    mariano.comprar(chocolatin)
+    mariano.comprar(caramelo)
+    mariano.comprar(bombon)
+
+    assert.equals(#{alfajor, chupetin}, mariano.golosinasFaltantes(#{alfajor, bombon, chocolatin, chupetin}))
+  }
+
+    test "Mariano compre el chocolatin, el caramelo y el bombón, falta el melón segun los gustos deseados #{melón, chocolate, frutilla, vainilla}" {
+    const chocolatin = new Chocolatin ()
+    const caramelo = new Caramelo ()
+    const bombon = new Bombon()
+    const alfajor = new Alfajor()
+    const chupetin = new Chupetin ()
+    mariano.comprar(chocolatin)
+    mariano.comprar(caramelo)
+    mariano.comprar(bombon)
+
+    assert.equals(#{melón, vainilla}, mariano.gustosFaltantes(#{melón, chocolate, frutilla, vainilla}))
   }
 
 }
